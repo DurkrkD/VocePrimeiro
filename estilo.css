@@ -1,0 +1,176 @@
+/* ==========================================================================
+   VOCÊ PRIMEIRO — estilos da página de vendas
+   Tudo que você mais vai querer mudar está aqui em cima, em CORES e MEDIDAS.
+   ========================================================================== */
+
+/* --- 1. CORES E MEDIDAS ------------------------------------------------- */
+:root {
+  --tinta:   #16232a;   /* texto principal, verde bem escuro */
+  --creme:   #f4f0e8;   /* fundo das seções claras */
+  --bronze:  #c08a52;   /* botões, detalhes, rótulos */
+  --verde:   #1d4239;   /* destaques e preço */
+  --cinza:   #5b5548;   /* textos secundários */
+  --linha:   #e3dccf;   /* divisórias entre seções */
+
+  --largura: 760px;     /* largura máxima do conteúdo */
+  --respiro: 72px;      /* espaço em cima e embaixo de cada seção */
+  --fonte-texto: Georgia, "Times New Roman", serif;
+  --fonte-apoio: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* --- 2. BASE ------------------------------------------------------------ */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--fonte-texto);
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--tinta);
+  background: var(--creme);
+}
+
+.container {           /* centraliza e limita a largura do conteúdo */
+  max-width: var(--largura);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+section {
+  padding: var(--respiro) 0;
+  border-bottom: 1px solid var(--linha);
+}
+
+h1 { font-size: 44px; line-height: 1.1; margin: 0 0 18px; font-weight: normal; letter-spacing: -.02em; }
+h2 { font-size: 31px; line-height: 1.2; margin: 0 0 20px; font-weight: normal; }
+h3 { font-size: 20px; margin: 28px 0 6px; }
+p  { margin: 0 0 16px; }
+ul { margin: 0 0 16px 20px; padding: 0; }
+li { margin-bottom: 9px; }
+
+/* rótulo pequeno em maiúsculas que abre cada seção */
+.rotulo {
+  font-family: var(--fonte-apoio);
+  font-size: 12px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--bronze);
+  margin-bottom: 22px;
+}
+
+.subtitulo { font-size: 21px; font-style: italic; color: var(--cinza); }
+
+/* --- 3. BOTÃO ----------------------------------------------------------- */
+.botao {
+  display: inline-block;
+  background: var(--bronze);
+  color: #fff;
+  text-decoration: none;
+  font-family: var(--fonte-apoio);
+  font-weight: 700;
+  font-size: 19px;
+  padding: 20px 40px;
+  border-radius: 6px;
+  margin-top: 26px;
+}
+.botao:hover { background: #ad7a45; }
+
+/* --- 4. TOPO DA PÁGINA (hero) ------------------------------------------- */
+.topo { position: relative; background: var(--tinta); padding: 0; overflow: hidden; }
+
+.topo-fundo {                       /* a imagem de fundo */
+  position: absolute; inset: 0;
+  background-image: url("img/fundo.png");
+  background-size: cover;
+  background-position: center;
+}
+.topo-veu {                         /* escurece o fundo pro texto ficar legível */
+  position: absolute; inset: 0;
+  background: linear-gradient(100deg,
+    rgba(10,20,26,.94) 0%, rgba(12,26,30,.86) 48%, rgba(14,34,32,.62) 100%);
+}
+.topo .container { position: relative; z-index: 2; padding-top: 88px; padding-bottom: 88px; }
+.topo h1 { font-size: 52px; color: #f2ede4; }
+.topo .subtitulo { color: #c3bcae; }
+
+.topo-grade {                       /* texto à esquerda, livro à direita */
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: 52px;
+  align-items: center;
+}
+
+/* o livro em perspectiva */
+.livro { position: relative; perspective: 1400px; }
+.livro img {
+  width: 100%; max-width: 330px; display: block; border-radius: 3px;
+  box-shadow: 0 30px 60px rgba(0,0,0,.55), 0 4px 14px rgba(0,0,0,.4);
+  transform: rotateY(-11deg) rotateX(2deg);
+  transform-origin: left center;
+}
+.livro::after {                     /* brilho simulando a lombada */
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 11px;
+  background: linear-gradient(90deg, rgba(255,255,255,.22), rgba(255,255,255,0));
+  transform: rotateY(-11deg); transform-origin: left center;
+  border-radius: 3px 0 0 3px;
+}
+
+.selos {                            /* 138 páginas · caderno · garantia */
+  display: flex; gap: 22px; flex-wrap: wrap; margin-top: 30px;
+  font-family: var(--fonte-apoio); font-size: 13px; color: #9fb3ab;
+}
+.selos span::before { content: "— "; color: var(--bronze); }
+
+/* --- 5. BLOCOS DE CONTEÚDO ---------------------------------------------- */
+.destaque {                         /* frase grande com barra lateral */
+  font-size: 26px; line-height: 1.35;
+  border-left: 4px solid var(--bronze);
+  padding-left: 22px; margin: 32px 0;
+  color: var(--verde);
+}
+
+.capitulo { margin: 26px 0; padding-bottom: 22px; border-bottom: 1px solid #e6e0d2; }
+.capitulo .parte {
+  display: block; font-family: var(--fonte-apoio); font-size: 13px;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--bronze); margin-bottom: 5px;
+}
+.capitulo .nome { display: block; font-size: 21px; margin-bottom: 6px; }
+.capitulo .resumo { color: var(--cinza); font-size: 17px; }
+
+.duas-colunas { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; }
+.caixa { background: #ece5d8; padding: 26px; border-radius: 8px; }
+.caixa h3 { margin-top: 0; }
+
+.capa-pequena {
+  float: right; width: 190px; margin: 0 0 22px 30px;
+  border-radius: 3px; box-shadow: 0 16px 34px rgba(0,0,0,.22);
+}
+
+/* --- 6. PREÇO ----------------------------------------------------------- */
+.preco { text-align: center; }
+.preco-antigo { font-size: 22px; color: #9a917f; text-decoration: line-through; }
+.preco-novo   { font-size: 64px; color: var(--verde); margin: 6px 0; }
+.apoio        { font-family: var(--fonte-apoio); font-size: 14px; color: #8a8172; margin-top: 14px; }
+.topo .apoio  { color: #9aa8a2; }
+
+/* --- 7. PERGUNTAS FREQUENTES -------------------------------------------- */
+.faq .pergunta { display: block; margin-top: 24px; font-size: 18px; font-weight: bold; }
+.faq p { color: var(--cinza); margin-top: 6px; }
+
+/* --- 8. FECHAMENTO ------------------------------------------------------ */
+.fechamento { background: var(--tinta); color: #ece7dd; text-align: center; }
+.fechamento h2 { color: #fff; }
+.fechamento p  { color: #b7b0a3; }
+
+/* --- 9. CELULAR --------------------------------------------------------- */
+@media (max-width: 760px) {
+  body { font-size: 17px; }
+  h1 { font-size: 34px; }
+  h2 { font-size: 26px; }
+  .topo h1 { font-size: 36px; }
+  .topo-grade { grid-template-columns: 1fr; gap: 38px; }
+  .duas-colunas { grid-template-columns: 1fr; }
+  .livro img { max-width: 230px; margin: 0 auto; transform: none; }
+  .livro::after { display: none; }
+  .capa-pequena { float: none; display: block; margin: 0 auto 24px; width: 170px; }
+}
